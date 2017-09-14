@@ -19,7 +19,7 @@ continue = \markup { \right-align "Continue..." }
 segno = \markup { \musicglyph #"scripts.segno" }
 coda = \markup { \musicglyph #"scripts.coda" }
 error = \markup { { "Wrong number of beats in score" } }
-repeaterror = \markup { { "Sore appears to be missing repeat" } }
+repeaterror = \markup { { "Score appears to be missing repeat" } }
 
 % TRANSCRIPTION
 
