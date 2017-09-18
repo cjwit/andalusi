@@ -4,10 +4,13 @@
 	title = "Tushiya"
 	subtitle = "Rasd #3"
 	composer = "Page 217"
+	copyright = "Transcription © Christopher Witulski, 2017"
+	tagline = ""
+
 }
 
 \relative d' {
-	\clef "treble" 
+	\clef "treble"
 	\key c \major
 	\time 2/4
 	\tempo "Adagio" 4 = 58
@@ -21,20 +24,20 @@
 			e16 f e d c4 | c8 d e c | d4 r4 |
 		}
 
-		e16 f e d c4 | c8 d e fis | g a16 b a8 g | e16 f e d c4 | c8 d e c | 
+		e16 f e d c4 | c8 d e fis | g a16 b a8 g | e16 f e d c4 | c8 d e c |
 
 	}
-	
-	\alternative { 
+
+	\alternative {
 		{ d4 r4 }
 		{ d4 r8 b'16 c }
 	}
 
 	\repeat volta 2 {
-		
+
 		d4 d8 e | d4 c | a16 b a b g4 | c8 d e g e d e c | d4 r4 |
 		d4 d8 e | d4 c | a16 b a b g4 | e16 f e d c8 d | e16 f e d c8 e |
-	
+
 	}
 
 	d4 r4 \bar "|."

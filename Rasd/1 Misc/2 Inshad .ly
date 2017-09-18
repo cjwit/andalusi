@@ -5,11 +5,13 @@
 	subtitle = "Rasd #2"
 	composer = "Page 214"
 	subsubtitle = "Note: Because this is unmetered, accidentials do not carry through the measure."
+	copyright = "Transcription © Christopher Witulski, 2017"
+	tagline = ""
 
 }
 
 \relative d' {
-	\clef "treble" 
+	\clef "treble"
 	\key c \major
 	\tempo "Ad libitum"
 	\cadenzaOn
@@ -37,7 +39,7 @@
 	r16 e[ e f] g[ f a8]~ a g4. a16[ g f e]~ e8.[ d32 c] d4 \breathe \bar ""
 	d8[ d] d16[ e8 d16] c[ d c8] c16[ d e f] g4 f e16[ f8 f16] e4 d16[ c] d4. \bar ""
 	e8.[ f16] g[ f e8]~ e[ d16 c] d4. e16[ d] c2 \breathe \bar ""
-	
+
 % seventh line, page 215
 
 	e4. d16[ c] d4 e8[ e] \bar ""
@@ -52,7 +54,7 @@
 	r8 c c4 b16[ c] d4 c16[ d] e8.[ f16] e[ f e8]~ e16[ c d8] c4 \fermata \bar ""
 	c16[ d e d] e4 g a g e8[ d16 c] d4 \bar ""
 	e16[ e e f] g8.[ f16] e[ f e8]~ e16[ d c d] c2 \fermata \bar ""
-	
+
 % top line, 2016
 
 	r8 e e4 e16[ f g f] a[ g8 a16] \bar ""
@@ -62,7 +64,7 @@
 	e8[ d16 c] d4 e16[ e e8]~ e16[ f g8] \bar ""
 	f16[ e f e]~ e8[ d16 c] d4 c4 \breathe \bar ""
 	c4 d16[ c d8] e4 f8.[ e16] d8.[ e16] c8.[ e16] d4 d \bar "|."
-	
+
 
 
 }
