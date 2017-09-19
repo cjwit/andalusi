@@ -5,7 +5,7 @@ To Do:
 * Add copyright code to all files (done through Rasd 3)
 
 ~~~
-copyright = "Transcription © Christopher Witulski, 2017"
+copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya: Nūba al-Rasd (2009)"
 tagline = ""
 ~~~
 
