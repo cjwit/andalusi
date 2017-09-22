@@ -1,10 +1,10 @@
 \version "2.18.2"
 
 \header {
-	title = "Li-Nabī al-Rasūl Hāj Shawq al-ʿAbdi"
-	subtitle = "Lesson transcription"
-	composer = "As played by Ahmed Shiqi"
-	meter = ""
+	title = "Li-Nabī al-Rasūl"
+	subtitle = "With lesson transcription, as played by Ahmed Shiqi"
+	composer = "Page 103"
+	meter = "Mizan Basit"
 	copyright = "Transcription © Christopher Witulski, 2017"
 	tagline = ""
 }
