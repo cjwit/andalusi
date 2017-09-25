@@ -40,6 +40,62 @@ introRest = {
 	\cadenzaOff
 }
 
+published = {
+	\new Staff \with {
+		instrumentName = #"Published"
+		shortInstrumentName = #"Pub."
+	}
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 6/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1 1 1 1)
+
+		\introRest
+
+		a'2. a4 \db a4.( g8 |
+		f4) a g2~ \db g4 r |
+		g2. g4 \db g2 |
+		f4 g a8( bes a g \db f e d4) |
+		f4( e8 f g4) f \db e( d |
+		c) c d( e \db f) e |
+		f( e f) g \db d4. c8 |
+		b?4 c d8( e f e \db d4) r4 |
+
+		% repeated over solo
+
+		a'2. a4 \db a4.( g8 |
+		f4) a g2~ \db g4 r |
+		g2. g4 \db g2 |
+		f4 g a8( bes a g \db f e d4) |
+		f4( e8 f g4) f \db e( d |
+		c) c d( e \db f) e |
+		f( e f) g \db d4. c8 |
+		b?4 c d8( e f e \db d4) r4 |
+
+
+		% bridge
+
+		f4( e8 f g4) f \db e( d) |
+		c c d8( e f e \db d4) r |
+		f4( e8 f g4) f \db e( d) |
+		c c d8( e f e \db d4) r |
+		f4( e8 f g4) f \db e4( d) |
+		c c d8( e f e \db d4) r \bar "||"
+
+	}
+	\addlyrics {
+		Li -- na -- | bī ra -- | sūl |
+		hā -- ja | shawq al -- ʿab -- | di |
+		Li -- na -- | bī ra -- | sū -- l |
+		hā -- ja | sha -- wq al -- ʿab -- | di |
+	}
+
+
+}
+
 vocal = {
 	\new Staff \with {
 		instrumentName = #"Voice"
@@ -48,25 +104,21 @@ vocal = {
 	\relative d' {
 		\clef "treble"
 		\key d \minor
-		\time 4/4
+		\time 6/4
 			\set Timing.beamExceptions = #'()
 			\set Timing.baseMoment = #(ly:make-moment 1/4)
-			\set Timing.beatStructure = #'(1 1 1 1)
+			\set Timing.beatStructure = #'(1 1 1 1 1 1)
 
 			\introRest
 
-			a'2.^\segno a4 |
-			a8( bes a g f4) r8 g8 |
-			g2. r4 |
-			r4 g2 g4 |
-			g2 f4 g |
-			a8( bes a g f4) r4 |
-			r8 f( e f g4) f |
-			e( d c) r8 c8 |
-			c8( d e4 f) e |
-			r8 f( e4 f) g |
-			d4. c8 b4 c |
-			d8( e f e d4)^\fine r4 \bar "||"
+			a'2.^\segno a4 \db a8( bes a g |
+			f4) r8 g8 g2~ \db g4 r4 |
+			r4 g2 g4 \db g2 |
+			f4 g a8( bes a g \db f4) r4 |
+			r8 f( e f g4) f \db e( d |
+			c) r8 c8 c8( d e4 \db f) e |
+			r8 f( e4 f) g \db d4. c8 |
+			b4 c d8( e f e \db d4)^\fine r4 \bar "||"
 
 		}
 		\addlyrics {
@@ -85,51 +137,41 @@ instrumental = {
 	\relative d' {
 		\clef "treble"
 		\key d \minor
-		\time 4/4
+		\time 6/4
 			\set Timing.beamExceptions = #'()
 			\set Timing.baseMoment = #(ly:make-moment 1/4)
-			\set Timing.beatStructure = #'(1 1 1 1)
+			\set Timing.beatStructure = #'(1 1 1 1 1 1)
 
 			\intro
 
-			a'4 a,8 a'16 a a8 a, a' a, |
-			a'8 bes16 bes a8 g f f a bes |
-			g g, g' g, g'4 g,8 a'16 a |
-			g8 g, g' g, g' a g a |
-			g8 g g, g'16 g f8 f g g,-> |
-			a'16 a bes bes a a g8 f4 g,8 d' |
-			f8. g16 e8 f g a16 g f8 g |
-			e8 e16 e d8 d-> c a -> c c-> |
-			c8 d e e f f e e16 e |
-			f8 g e e16 e f8 f-> g g-> |
-			d4. c8 b b16 b c8 c d e-> f e-> d4 d, |
+			a'4 a,8 a'16 a a8 a, a' a, \db a'8 bes16 bes a8 g |
+			f f a bes g g, g' g, \db g'4 g,8 a'16 a |
+			g8 g, g' g, g' a g a \db g8 g g, g'16 g |
+			f8 f g g,-> a'16 a bes bes a a g8 \db f4 g,8 d' |
+			f8. g16 e8 f g a16 g f8 g \db e8 e16 e d8 d-> |
+			c a-> c c-> c8 d e e \db f f e e16 e |
+			f8 g e e16 e f8 f-> g g-> \db d4. c8 |
+			b b16 b c8 c d e-> f e-> \db d4 d, |
 
 			% solo
 
-			a''8 a, a' a, a' a, a' a, |
-			a' bes16 a bes a g g f8 f a bes |
-			g e c d b a g g'16 g |
-			g8 g, g' g, g'16 g a a g g f8->~ |
-			f8 g g, a'16 g f8 f g g, |
-			\tuplet 3/2 { a'8 bes c } \tuplet 3/2 { bes8 a g } f4 g,8 d' |
-			f4 e8 f g a16 g f8 g |
-			e8. f16 d8 d-> c a-> c c |
-			c d-> e e-> f f-> e e-> |
-			f g-> e e16-> e f8 f-> g g-> |
-			g d,~ d c' b b16-> b c8 c-> |
-			d e f e d d,~ d d' \bar "||"
+			a''8 a, a' a, a' a, a' a, \db a' bes16 a bes a g g |
+			f8 f a bes g e c d \db b a g g'16 g |
+			g8 g, g' g, g'16 g a a g g f8->~ \db f8 g g, a'16 g |
+			f8 f g g, \tuplet 3/2 { a'8 bes c } \tuplet 3/2 { bes8 a g } \db f4 g,8 d' |
+			f4 e8 f g a16 g f8 g \db e8. f16 d8 d-> |
+			c a-> c c c d-> e e-> \db f f-> e e-> |
+			f g-> e e16-> e f8 f-> g g-> \db g d,~ d c' |
+			b b16-> b c8 c-> d e f e \db d d,~ d d' \bar "||"
 
 			% bridge
 
-			f8 g e f g g f f |
-			e f16 e d8 e16 d c8 c f e |
-			d d, d' d, d' d, d' d, |
-			f'' e f d e c d b |
-			c a b g f g e f |
-			g16 g a a g g f f e d c8 d8. d16 |
-			f8 f-> e f-> g a16 g f8 g |
-			e f16 e d8 d-> c a-> f' e |
-			d d, d' d, d' d, d' d^\ds \bar "||"
+			f8 g e f g g f f \db e f16 e d8 e16 d |
+			c8 c f e d d, d' d, \db d' d, d' d, |
+			f'' e f d e c d b \db c a b g |
+			f g e f g16 g a a g g f f \db e d c8 d8. d16 |
+			f8 f-> e f-> g a16 g f8 g \db e f16 e d8 d-> |
+			c a-> f' e d d, d' d, \db d' d, d' d^\ds \bar "||"
 
 		}
 	}
@@ -137,10 +179,11 @@ instrumental = {
 \layout {
 	\context {
 		\Staff \RemoveEmptyStaves
-		\override VerticalAxisGroup.remove-first = ##t
+%		\override VerticalAxisGroup.remove-first = ##t
 	}
 }
 <<
+	\published
 	\vocal
 	\instrumental
 >>
