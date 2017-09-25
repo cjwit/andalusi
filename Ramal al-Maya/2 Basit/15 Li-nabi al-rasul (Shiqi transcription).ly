@@ -3,7 +3,8 @@
 \header {
 	title = "Li-Nabī al-Rasūl"
 	subtitle = "With lesson transcription, as played by Ahmed Shiqi"
-	composer = "Page 103"
+	composer = "Shami page 103"
+	arranger = "Davila Page 198"
 	meter = "Mizan Basit"
 	copyright = "Transcription © Christopher Witulski, 2017"
 	tagline = ""
