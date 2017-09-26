@@ -28,6 +28,7 @@ Introductions
 	* What can I offer that is different than what is already in there?
 * How do distinct modes live within a bounded and firmly ordered repertoire?
 	* Where are the lines and do they matter in this context?
+	* What gives a mode an identity within this type of context (especially when improvisations often borrow from another tradition)?
 
 ## Analysis
 
@@ -36,3 +37,13 @@ Introductions
 * Is there a range- or contour- based development through each movement?
 * Where do new pitches appear? Do they signal anything structural?
 * What is the best way to measure shifts in tonality? What is the structural or modal context for a given shift?
+* Overall trends (perhaps as graphs)
+	* Most common pitches across the repertoire (absolute)
+	* Use of certain pitches over time (getting at range)
+	* Common one-beat, two-beat motives
+	* Repetition
+	* Common contour motion
+		* Number of notes with less regard to duration
+		* Cutting across movements, time signatures, rhythmic feels
+* Associate rhythmic accents to musical motion
+	* Change from beginning to end of movements? (Relationship to tempo?)
