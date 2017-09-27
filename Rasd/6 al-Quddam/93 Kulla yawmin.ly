@@ -25,53 +25,58 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 3/4
-		\set Timing.beamExceptions = #'()
-		\set Timing.baseMoment = #(ly:make-moment 1/4)
-		\set Timing.beatStructure = #'(1 1 1)
-	\tempo "Andantino" 4 = 76
+\score {
 
-	\partial 1
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 3/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1)
+		\tempo "Andantino" 4 = 76
 
-	d4~ |
+		\partial 1
 
-	% changing repeat structure
+		d4~ |
 
-	\repeat volta 3 {
-		d8 c d e d c |
-		a4 g d'~ |
-		d8 c d e d c |
-		a g a16 g a b g4~ |
-		g4 g'8 g4 a8 |
-		g2 g4~ |
-		g8 g4 g a16 b |
-		a8 g16 fis e4 a~ |
-		a8 g a b a g |
-		e d e c d4 |
-		e4 e8 e4 d8 |
-		c4~ c8 d c4~ |
-		c8 c4 c d8 |
-		e2 a4~ |
-		a8 g a b a g |
-		e d e c d4 |
-		e4 e8 e4 d8 |
-		c4~ c8 d e16 f e d |
-		c8 c d e d e
+		% changing repeat structure
+
+		\repeat volta 3 {
+			d8 c d e d c |
+			a4 g d'~ |
+			d8 c d e d c |
+			a g a16 g a b g4~ |
+			g4 g'8 g4 a8 |
+			g2 g4~ |
+			g8 g4 g a16 b |
+			a8 g16 fis e4 a~ |
+			a8 g a b a g |
+			e d e c d4 |
+			e4 e8 e4 d8 |
+			c4~ c8 d c4~ |
+			c8 c4 c d8 |
+			e2 a4~ |
+			a8 g a b a g |
+			e d e c d4 |
+			e4 e8 e4 d8 |
+			c4~ c8 d e16 f e d |
+			c8 c d e d e
+		}
+
+		\alternative {
+			{
+				d4 r4 d4\laissezVibrer |
+			}
+			{
+				d4 r2 \bar "|."
+			}
+		}
+
 	}
 
-	\alternative {
-		{
-			d4 r4 d4\laissezVibrer |
-		}
-		{
-			d4 r2 \bar "|."
-		}
-	}
-
+	\layout {}
+	\midi {}
 }

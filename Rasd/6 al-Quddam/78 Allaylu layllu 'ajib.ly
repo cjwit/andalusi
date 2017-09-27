@@ -25,49 +25,54 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 3/4
-		\set Timing.beamExceptions = #'()
-		\set Timing.baseMoment = #(ly:make-moment 1/4)
-		\set Timing.beatStructure = #'(1 1 1 1)
-	\tempo "Andante" 4 = 63
+\score {
 
-	r8 e8 e8. e16 e f e d |
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 3/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1 1)
+		\tempo "Andante" 4 = 63
 
-	\repeat volta 5 {
-		c4 c8 d e16 fis g8~ |
-		g4. a16 b a8 g |
-		g16 fis e8 fis( g16) g a4~ |
-		a8 a16( b) a8 g e8. d16 |
+		r8 e8 e8. e16 e f e d |
+
+		\repeat volta 5 {
+			c4 c8 d e16 fis g8~ |
+			g4. a16 b a8 g |
+			g16 fis e8 fis( g16) g a4~ |
+			a8 a16( b) a8 g e8. d16 |
+			c4 c8 d e4 |
+			f?8 d d e c e |
+			d2.-\fine \bar "||"
+		}
+
+		\alternative {
+			{
+				r8 e e8. e16 e f e d |
+				\set Score.repeatCommands = #'(start-repeat)
+			}
+			{
+				a'8.-\repeaterror b16 a8 g e8. d16 |
+			}
+		}
+
 		c4 c8 d e4 |
-		f?8 d d e c e |
-		d2.-\fine \bar "||"
+		f8 d d e c e |
+		d2. |
+		\set Score.repeatCommands = #'(end-repeat)
+
+		a'8. b16 a8 g e8. d16 |
+		c4 c8 d e4 |
+		f8 d d e c e |
+		d2.-\dc \bar "||"
+
+
 	}
 
-	\alternative {
-		{
-			r8 e e8. e16 e f e d |
-			\set Score.repeatCommands = #'(start-repeat)
-		}
-		{
-			a'8.-\repeaterror b16 a8 g e8. d16 |
-		}
-	}
-
-	c4 c8 d e4 |
-	f8 d d e c e |
-	d2. |
-	\set Score.repeatCommands = #'(end-repeat)
-
-	a'8. b16 a8 g e8. d16 |
-	c4 c8 d e4 |
-	f8 d d e c e |
-	d2.-\dc \bar "||"
-
-
+	\layout {}
+	\midi {}
 }

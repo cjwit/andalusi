@@ -25,28 +25,33 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 3/4
-		\set Timing.beamExceptions = #'()
-		\set Timing.baseMoment = #(ly:make-moment 1/4)
-		\set Timing.beatStructure = #'(1 1 1 1)
-	\tempo "Andante" 4 = 66
+\score {
 
-	r8 a'16( b) a8 g e fis |
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 3/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1 1)
+		\tempo "Andante" 4 = 66
 
-	\repeat volta 2 {
-		g8 a16( b) a8 g e4 |
-		c'8 b a g e16 fis g8~ |
-		g8 a16( b) a8 g e16 f e d |
-		c8 d16( d) e8 c d4~ |
-		d8-\fine \bar "||" a'16 b a8 g e fis |
+		r8 a'16( b) a8 g e fis |
+
+		\repeat volta 2 {
+			g8 a16( b) a8 g e4 |
+			c'8 b a g e16 fis g8~ |
+			g8 a16( b) a8 g e16 f e d |
+			c8 d16( d) e8 c d4~ |
+			d8-\fine \bar "||" a'16 b a8 g e fis |
+		}
+
+
+
 	}
 
-
-
+	\layout {}
+	\midi {}
 }

@@ -25,42 +25,47 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 6/16
-	\tempo "Allegretto" 8. = 104
+\score {
 
-	\repeat volta 2 {
-		\partial 4
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 6/16
+		\tempo "Allegretto" 8. = 104
+
+		\repeat volta 2 {
+			\partial 4
+
+			e16~ e fis8 |
+			g g16~ g g8 |
+			g8. g16 g8 |
+			g8 a16 b g8~ |
+			g8
+		}
 
 		e16~ e fis8 |
 		g g16~ g g8 |
-		g8. g16 g8 |
-		g8 a16 b g8~ |
-		g8
+		g8. fis16 g8 |
+		a4.~ |
+		a8
+
+		\repeat volta 2 {
+			r16 d8.~ |
+			d8 c16~ c b8 |
+			a8.~ a16 g8 |
+			g8.~ g16 d8~ |
+			d fis16~ fis g8 |
+			a8 b16~ b a8 |
+			g fis16~ fis a8 |
+			g4.~ |
+			g8^\fine_\dc
+		}
+
+
 	}
 
-	e16~ e fis8 |
-	g g16~ g g8 |
-	g8. fis16 g8 |
-	a4.~ |
-	a8
-
-	\repeat volta 2 {
-		r16 d8.~ |
-		d8 c16~ c b8 |
-		a8.~ a16 g8 |
-		g8.~ g16 d8~ |
-		d fis16~ fis g8 |
-		a8 b16~ b a8 |
-		g fis16~ fis a8 |
-		g4.~ |
-		g8^\fine_\dc
-	}
-
-
+	\layout {}
+	\midi {}
 }

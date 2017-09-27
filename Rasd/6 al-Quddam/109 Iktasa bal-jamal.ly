@@ -25,47 +25,52 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 6/16
-	\tempo "Vivace" 8. = 138
+\score {
 
-	\repeat volta 2 {
-		\partial 8
-		b'8 \bar "||"
-		b^\segno a16 a8 g16 |
-		g8. r8. |
-		g8 fis16~ fis g8^\coda \bar "||"
-		a8. r16 b8 |
-		b8 a16 a8 g16 |
-		g8.~ g16
-	}
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 6/16
+		\tempo "Vivace" 8. = 138
 
-	\repeat volta 2 {
+		\repeat volta 2 {
+			\partial 8
+			b'8 \bar "||"
+			b^\segno a16 a8 g16 |
+			g8. r8. |
+			g8 fis16~ fis g8^\coda \bar "||"
+			a8. r16 b8 |
+			b8 a16 a8 g16 |
+			g8.~ g16
+		}
+
+		\repeat volta 2 {
+			c8 |
+			\tuplet 2/3 { c16 c } c8 c16 |
+			c4. |
+			\tuplet 2/3 { c16 d~ } d16. c32 b16 |
+			a8.~ a16 b8 |
+			b b16 b b8 |
+			b8.~ b16 g8 |
+			g a16~ a b d |
+			c8. r16
+		}
+
 		c8 |
 		\tuplet 2/3 { c16 c } c8 c16 |
 		c4. |
 		\tuplet 2/3 { c16 d~ } d16. c32 b16 |
 		a8.~ a16 b8 |
-		b b16 b b8 |
-		b8.~ b16 g8 |
-		g a16~ a b d |
-		c8. r16
+		b8 a16 a8 g16 |
+		g8. r16 b8-\dsalcoda \bar "||"
+		a8.^\coda r16 d8 |
+		d b16 c a b |
+		g8. r8. \bar "|."
+
 	}
 
-	c8 |
-	\tuplet 2/3 { c16 c } c8 c16 |
-	c4. |
-	\tuplet 2/3 { c16 d~ } d16. c32 b16 |
-	a8.~ a16 b8 |
-	b8 a16 a8 g16 |
-	g8. r16 b8-\dsalcoda \bar "||"
-	a8.^\coda r16 d8 |
-	d b16 c a b |
-	g8. r8. \bar "|."
-
+	\layout {}
+	\midi {}
 }

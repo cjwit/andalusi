@@ -25,67 +25,72 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 3/4
-		\set Timing.beamExceptions = #'()
-		\set Timing.baseMoment = #(ly:make-moment 1/4)
-		\set Timing.beatStructure = #'(1 1 1 1)
-	\tempo "Andante" 4 = 60
+\score {
 
-	a'8 a16 b a8 g e d |
-	g g a4 r4 |
-	a8 a16 b a8 g e d |
-	e c d4 r4 |
-	a'8 a16 b a8 g e d |
-	g g a g a4 |
-	a8 a16 b a8 g e d |
-	e c d4 r4 |
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 3/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1 1)
+		\tempo "Andante" 4 = 60
 
-	\repeat volta 2 {
-		d8 d16 e d8 c a g |
-		c d e g e d |
+		a'8 a16 b a8 g e d |
+		g g a4 r4 |
+		a8 a16 b a8 g e d |
 		e c d4 r4 |
-	}
+		a'8 a16 b a8 g e d |
+		g g a g a4 |
+		a8 a16 b a8 g e d |
+		e c d4 r4 |
 
-	\repeat volta 2 {
-		g4 e16 fis g a g4~ |
-		g8 e16 fis g8 a g4 |
-		a8 a a g b4 |
-		b8 b b a d c16 b |
-		a4 a8 a a b |
-		a g g d g a |
-		g f? e d e c |
-		d4 r2
-	}
-
-	\repeat volta 2 {
-		a'8 r16 c b c a8 r16 c b c |
-		a4 g8 e fis g |
-		a4 b16 c b c b a g8 |
-		a8 r16 c b c a8 r16 c b c |
-		a4 g8 d g f? |
-		e d e c d4 |
-	}
-
-	\repeat volta 2 {
-		e8. e16 g4 e8. e16 |
-		g4 e16 fis g a g fis e d |
-		c4 e16 fis g a g fis e d |
-		c8 d e d e c |
-	}
-
-	\alternative {
-		{
-			d4 d8 d d4 |
+		\repeat volta 2 {
+			d8 d16 e d8 c a g |
+			c d e g e d |
+			e c d4 r4 |
 		}
-		{
-			d8-\continue \bar ""
+
+		\repeat volta 2 {
+			g4 e16 fis g a g4~ |
+			g8 e16 fis g8 a g4 |
+			a8 a a g b4 |
+			b8 b b a d c16 b |
+			a4 a8 a a b |
+			a g g d g a |
+			g f? e d e c |
+			d4 r2
 		}
+
+		\repeat volta 2 {
+			a'8 r16 c b c a8 r16 c b c |
+			a4 g8 e fis g |
+			a4 b16 c b c b a g8 |
+			a8 r16 c b c a8 r16 c b c |
+			a4 g8 d g f? |
+			e d e c d4 |
+		}
+
+		\repeat volta 2 {
+			e8. e16 g4 e8. e16 |
+			g4 e16 fis g a g fis e d |
+			c4 e16 fis g a g fis e d |
+			c8 d e d e c |
+		}
+
+		\alternative {
+			{
+				d4 d8 d d4 |
+			}
+			{
+				d8-\continue \bar ""
+			}
+		}
+
 	}
 
+	\layout {}
+	\midi {}
 }

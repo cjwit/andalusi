@@ -25,37 +25,42 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
 % TRANSCRIPTION
 
-\relative d' {
-	\clef "treble"
-	\key c \major
-	\time 3/4
-		\set Timing.beamExceptions = #'()
-		\set Timing.baseMoment = #(ly:make-moment 1/4)
-		\set Timing.beatStructure = #'(1 1 1)
-	\tempo "Andantino" 4 = 69
+\score {
 
-	r8 c'16 b a8 g g8. fis16 |
+	\relative d' {
+		\clef "treble"
+		\key c \major
+		\time 3/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1)
+		\tempo "Andantino" 4 = 69
 
-	\repeat volta 3 {
-		e4 g8. a16 g fis ees d |
-		c8 c d8. d16 ees fis ees d |
-		c4 c8 e? e4~ |
-		e8 \breathe c'16 b a8 g g8. fis16 |
-		e4 g8. a16 g fis ees d |
-		c4 c8 d ees g |
-		d ees c ees d4~ |
+		r8 c'16 b a8 g g8. fis16 |
+
+		\repeat volta 3 {
+			e4 g8. a16 g fis ees d |
+			c8 c d8. d16 ees fis ees d |
+			c4 c8 e? e4~ |
+			e8 \breathe c'16 b a8 g g8. fis16 |
+			e4 g8. a16 g fis ees d |
+			c4 c8 d ees g |
+			d ees c ees d4~ |
+		}
+
+		\alternative {
+			{
+				d8 \breathe c'16 b a8 g g8. fis16 |
+			}
+			{
+				d4\repeatTie r2 \bar "|."
+			}
+		}
+
 	}
 
-	\alternative {
-		{
-			d8 \breathe c'16 b a8 g g8. fis16 |
-		}
-		{
-			d4\repeatTie r2 \bar "|."
-		}
-	}
-
+	\layout {}
+	\midi {}
 }
