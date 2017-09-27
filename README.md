@@ -4,6 +4,7 @@ To Do:
 
 * Add consistent variables to all files (or create an "include" file)
 * Add copyright code to all files (done through Rasd 3)
+* Add dotted bar line `\db` to 4 and 5 (Basit)
 
 ~~~
 copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya: Nūba al-Rasd (2009)"
