@@ -39,7 +39,11 @@ Introductions
 * Where do new pitches appear? Do they signal anything structural?
 * What is the best way to measure shifts in tonality? What is the structural or modal context for a given shift?
 * Overall trends (perhaps as graphs)
+	* Changes in tempo (increasing), lines between time signatures
+		* One using song numbers (one tempo per song), another using measures showing a "weighted" distribution of tempo, same two sets of x-axis ticks could serve these others, as well
 	* Most common pitches across the repertoire (absolute)
+		* Using same x-axis pair, a scatter plot of absolute pitch could show mode and range (with contour)
+		* Using same x-axis pair, a scatter plot of pitch classes in each song could show mode
 	* Use of certain pitches over time (getting at range)
 	* Common one-beat, two-beat motives
 	* Repetition
