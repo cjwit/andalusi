@@ -1,15 +1,17 @@
 # Andalusi transcriptions
 
-To Do:
+# To Do
 
-* Add consistent variables to all files (or create an "include" file)
-* Add copyright code to all files (done through Rasd 3)
+LilyPond
+
 * Add dotted bar line `\db` to 4 and 5 (Basit)
 
-~~~
-copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya: Nūba al-Rasd (2009)"
-tagline = ""
-~~~
+Python
+
+* Reverse the order of the heat map chart, put D on the bottom
+* Find a way to maintain song numbers and titles, use that as list on the top or bottom
+* Create heat map that incorporates range
+* Unfold repeats
 
 ## Notes
 
