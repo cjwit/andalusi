@@ -8,10 +8,11 @@ LilyPond
 
 Python
 
-* Reverse the order of the heat map chart, put D on the bottom
-* Find a way to maintain song numbers and titles, use that as list on the top or bottom
-* Create heat map that incorporates range
 * Unfold repeats
+
+Excel
+
+* Flip Pitch Class Chart
 
 ## Notes
 

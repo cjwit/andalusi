@@ -56,26 +56,24 @@ def durationsToPercentage( pitchClassList ):
 	return pitchClassList
 
 def pitchClassPercentages( song ):
+	"Convert song object's durations to percentages"
 	return durationsToPercentage(pitchClassDurations(song))
 
 def appendToCSV( csv, pitchClassDurations ):
-	csv[0].append(pitchClassDurations[0])
-	csv[1].append(pitchClassDurations[1])
-	csv[2].append(pitchClassDurations[2])
-	csv[3].append(pitchClassDurations[3])
-	csv[4].append(pitchClassDurations[4])
-	csv[5].append(pitchClassDurations[5])
-	csv[6].append(pitchClassDurations[6])
-	csv[7].append(pitchClassDurations[7])
-	csv[8].append(pitchClassDurations[8])
-	csv[9].append(pitchClassDurations[9])
-	csv[10].append(pitchClassDurations[10])
-	csv[11].append(pitchClassDurations[11])
+	"Build object to use as CSV"
+	pitches = list(pitchClassDurations.keys())
+	for p in pitches:
+		csv[p].append(pitchClassDurations[p])
 
 def buildCSV( songs ):
+	"Build a CSV file from a list of songs"
 	csv = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[]}
+	metadata = {"titles": [], "numbers": [], "movements":[]}
 	outputText = "Songs"
 	for index,song in enumerate(songs):
+		metadata['titles'].append(song.title)
+		metadata['numbers'].append(song.number)
+		metadata['movements'].append(song.movement)
 		outputText += ","
 		outputText += str(index)
 		appendToCSV(csv, pitchClassPercentages(song))
@@ -84,6 +82,12 @@ def buildCSV( songs ):
 		outputText += "\n" + str(k)
 		for listItem in csv[k]:
 			outputText += "," + str(listItem)
+	outputText += "\n#"
+	for i,v in enumerate(metadata['titles']):
+		outputText += "," + str(metadata['numbers'][i]) + " " + v
+	outputText += "\nMovement"
+	for m in metadata['movements']:
+		outputText += "," + m
 	print(outputText) # output file
 
 # commands
