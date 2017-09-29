@@ -9,12 +9,9 @@ LilyPond
 
 Python
 
-* Unfold repeats
-	* Charts song numbers (one tempo per song), others using measures showing a "weighted" distribution of tempo, same two sets of x-axis ticks could serve these others, as well
-
-Excel
-
-* Flip Pitch Class Chart
+* Find common motives, distribution of them
+	* Perhaps they can have numbers and can be charted (in case some come and go throughout)
+* Charts song numbers (one tempo per song), others using measures showing a "weighted" distribution of tempo, same two sets of x-axis ticks could serve these others, as well
 
 ## Notes
 
