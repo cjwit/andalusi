@@ -92,6 +92,6 @@ def buildCSV( songs ):
 
 # commands
 
-rasdCorpus = corpus.corpora.LocalCorpus('rasdCorpus')
+rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
 buildCSV(songs)
