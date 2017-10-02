@@ -2,6 +2,8 @@ Tenzer 2006: http://ebooks.ohiolink.edu/xtf-ebc/view?docId=tei/ox/9780195177893/
 
 Tenzer and Roeder 2011: http://ebooks.ohiolink.edu/xtf-ebc/view?docId=tei/ox/9780195384581/9780195384581.xml&query=&brand=default
 
+Clarke 2017: http://mtosmt.org/issues/mto.17.23.3/mto.17.23.3.clarke.html
+
 # Readings in modal analysis
 
 * Robert Morris (AAWM journal 1)
@@ -9,10 +11,14 @@ Tenzer and Roeder 2011: http://ebooks.ohiolink.edu/xtf-ebc/view?docId=tei/ox/978
 * Richard Widdess (AAWM journal 1)
 * Richard Widdess (Tenzer and Roeder 2011, ch 5)
 
-# Creativity 
+# Creativity
 
-* Sutton and Vetter (Tenzer 2006, ch 7) 
+* Sutton and Vetter (Tenzer 2006, ch 7)
 * Tenzer and Roeder ch 9
+
+# Structure
+
+Clarke 2017
 
 # On analysis
 
