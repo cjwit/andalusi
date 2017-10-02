@@ -2,6 +2,18 @@
 
 # To Do
 
+Where to start
+
+* Analyzing motive object, incorporate "show" function by creating a useful depiction of what is going on
+	* Create list of where the motive appears
+	* Build a text object with that list
+	* Build a stream, bounded by double bar line, append text, give a unique number/id
+	* Combine all common motives, show()
+	* Chart appearance of individual motives by number/id over songs (multiple line line graph)
+	* Automate to find useful ones of various lengths
+
+* Redo the same thing, but without reference to duration?
+
 LilyPond
 
 * Add dotted bar line `\db` to 4 and 5 (Basit)
