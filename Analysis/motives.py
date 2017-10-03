@@ -5,7 +5,7 @@ import os
 # 	could change this to an environment variable to make it work with any of the Andalusi corpuses
 
 class Song:
-	def __init__(self, number, title, movementNumber, movement, duration, notes, tempo):
+	def __init__(self, number, title, movementNumber, movement, duration, notes, tempo, index):
 		self.number = number
 		self.title = title
 		self.movementNumber = movementNumber
@@ -13,6 +13,7 @@ class Song:
 		self.duration = duration
 		self.notes = notes
 		self.tempo = tempo
+		self.index = index
 
 def getFileInfo( path ):
 	"Collects song metadata from path"
@@ -23,6 +24,8 @@ def getFileInfo( path ):
 def buildSongList( corpus ):
 	"Builds a list of song objects"
 	songs = []
+	errors = []
+	songIndex = 0
 	for p in corpus.getPaths():
 		fileInfo = getFileInfo(p)
 		# check that it's not an improvisation
@@ -36,18 +39,56 @@ def buildSongList( corpus ):
 			tempo = metronomeMark.number
 			duration = scoreStream.duration.quarterLength
 			notes = scoreStream
-			print(notes)
-			s = Song(fileInfo['number'], fileInfo['title'], fileInfo['movementNumber'], fileInfo['movement'], duration, notes, tempo)
+			for i, n in enumerate(notes):
+				if (n.duration.quarterLength == 0 and "Note" in n.classes):
+					errors.append({
+						'number': fileInfo['number'],
+						'index': i,
+						'offset': n.offset,
+						'songIndex': songIndex
+					})
+			s = Song(
+				fileInfo['number'],
+				fileInfo['title'],
+				fileInfo['movementNumber'],
+				fileInfo['movement'],
+				duration,
+				notes,
+				tempo,
+				songIndex
+			)
+			songIndex += 1
 			songs.append(s)
-	# Sort and display song information
+	songs = fixErrors(songs, errors)
 	songs.sort(key=lambda song: song.number)
 	return songs
 
-def collectSet( notes ):
-	"Convert note objects into a set object"
-
-
-	, notes[i+1].name, notes[i+2].name, notes[i+3].name
+def fixErrors( songs, errors ):
+	restsToDelete = []
+	for e in errors:
+		songIndex = e['songIndex']
+		noteIndex = e['index']
+		song = songs[songIndex]
+		note = song.notes[noteIndex]
+		nextNote = note.next()
+#		print(song.movement, song.number, song.title)
+		if song.movement == "Basit":
+#			print("  --  ", note.duration.quarterLength, "at", noteIndex)
+			note.duration.quarterLength = 0.125
+			print(" - fixed error in song", song.number)
+#			print("  --  ", note.duration.quarterLength, "at", noteIndex)
+			if "Rest" in nextNote.classes:
+#				print("  --  Found a rest at", noteIndex + 1)
+				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1 })
+		else:
+			print(" - unfixed error in song", song.number)
+#			print("  --  ", note, note.duration.quarterLength, "at", note.offset, "index", noteIndex, nextNote)
+#			song.notes.show('text')
+	restsToDelete.sort(key=lambda rest: rest['note'], reverse=True)
+	for rest in restsToDelete:
+		songs[rest['song']].notes.pop(rest['note'])
+		print(' - removed rest in song', rest['song'])
+	return(songs)
 
 # collect each set of X notes
 def findStartingPoints( song, number ):
@@ -95,13 +136,44 @@ def buildSets( songs, number ):
 			motive['string'] = motive['string'][:-1]
 #			print(motive)
 			songMotives['motives'].append(motive)
-		print(songMotives['songMovement'], songMotives['songNumber'], songMotives['songTitle'], len(songMotives['motives']))
+#		print(songMotives['songMovement'], songMotives['songNumber'], songMotives['songTitle'], len(songMotives['motives']))
 		allMotives.append(songMotives)
-#	return(allMotives)
+	return(allMotives)
 
-# not returning anything right now
-buildSets(songs, 4)
+
+def globalCommonMotives( motiveObject ):
+	commonMotives = []
+	for song in motiveObject:
+		motives = song['motives']
+		print("\n")
+		print(song['songNumber'], song['songTitle'], " - ", len(motives), "to test")
+		if len(motives) != 0:
+			for m in motives:
+				string = m['string']
+				filtered = list(filter(lambda motive: motive['string'] == string, commonMotives))
+				if len(filtered) == 0:
+					commonMotives.append({
+						'string': string,
+						'count': 1,
+						'instances': [m]
+					})
+				else:
+					for i in commonMotives:
+						if i['string'] == string:
+							i['count'] += 1
+							i['instances'].append(m)
+		else:
+			print(song['songNumber'], song['songTitle'], "has an unknown error, there are no motives to test")
+	commonMotives.sort(key=lambda motive: motive['count'], reverse=True)
+	print(len(commonMotives), 'were unique')
+	print('highest count:', commonMotives[0]['count'], commonMotives[0]['string'])
+	return(commonMotives)
+
+globalCommonMotives(allMotives)
+
+
+allMotives = buildSets(songs, 6)
 
 # commands
-rasdCorpus = corpus.corpora.LocalCorpus('rasdCorpus')
+rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)

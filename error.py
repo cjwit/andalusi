@@ -18,8 +18,11 @@ songs[5].notes.show() # output default set to lily.pdf
 # this one, however, does not work. it results in an exception that durations longer than a longa are not supported
 # filtering out all of the shortest notes to show that none are longer than a longa...
 for n in songs[2].notes:
-	if n.duration.quarterLength > 2:
-		print(n.duration.quarterLength)
+	if (n.duration.quarterLength == 0.125 and 'Note' in n.classes):
+		print("current", n.duration.quarterLength, n.name, n.offset)
+		print("next", n.next().duration.quarterLength)
+		if "Rest" in n.next().classes:
+			# Delete, somehow
 
 # 2.25
 # 3.0

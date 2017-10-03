@@ -4,7 +4,11 @@
 
 Where to start
 
-* Analyzing motive object, incorporate "show" function by creating a useful depiction of what is going on
+* Notes with 0.0 durations should have proper durations in Quddam
+	* Remove unnecessary rests
+
+* Using globalCommonMotives, incorporate "show" function by creating a useful depiction of what is going on
+	* Collect handful of most common (beginning of the list)
 	* Create list of where the motive appears
 	* Build a text object with that list
 	* Build a stream, bounded by double bar line, append text, give a unique number/id
