@@ -145,7 +145,6 @@ def globalCommonMotives( motiveObject ):
 	commonMotives = []
 	for song in motiveObject:
 		motives = song['motives']
-		print("\n")
 		print(song['songNumber'], song['songTitle'], " - ", len(motives), "to test")
 		if len(motives) != 0:
 			for m in motives:
@@ -169,11 +168,8 @@ def globalCommonMotives( motiveObject ):
 	print('highest count:', commonMotives[0]['count'], commonMotives[0]['string'])
 	return(commonMotives)
 
-globalCommonMotives(allMotives)
-
-
-allMotives = buildSets(songs, 6)
 
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
+globalCommonMotives(buildSets(songs, 10))
