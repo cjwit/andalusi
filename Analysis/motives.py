@@ -71,24 +71,32 @@ def fixErrors( songs, errors ):
 		song = songs[songIndex]
 		note = song.notes[noteIndex]
 		nextNote = note.next()
-#		print(song.movement, song.number, song.title)
+		previousNote = song.notes[noteIndex-1]
+		print(song.movement)
 		if song.movement == "Basit":
-#			print("  --  ", note.duration.quarterLength, "at", noteIndex)
 			note.duration.quarterLength = 0.125
 			print(" - fixed error in song", song.number)
-#			print("  --  ", note.duration.quarterLength, "at", noteIndex)
 			if "Rest" in nextNote.classes:
-#				print("  --  Found a rest at", noteIndex + 1)
 				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1 })
+		elif song.movement == "al-Quddam":
+			print(str(previousNote.duration.quarterLength), note.duration.quarterLength, nextNote.classes[0])
+			if (str(previousNote.duration.quarterLength) == "1/3" and note.duration.quarterLength == 0 and "Rest" in nextNote.classes):
+				previousNote.duration.quarterLength = 0.375
+				note.duration.quarterLength = 0.125
+				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1})
+				print("NEW DURATIONS:", song.notes[noteIndex - 1].duration.quarterLength, song.notes[noteIndex].duration.quarterLength, song.notes[noteIndex + 2].duration.quarterLength)
+				print(" - fixed error in song", song.number)
 		else:
 			print(" - unfixed error in song", song.number)
-#			print("  --  ", note, note.duration.quarterLength, "at", note.offset, "index", noteIndex, nextNote)
-#			song.notes.show('text')
 	restsToDelete.sort(key=lambda rest: rest['note'], reverse=True)
 	for rest in restsToDelete:
 		songs[rest['song']].notes.pop(rest['note'])
 		print(' - removed rest in song', rest['song'])
 	return(songs)
+
+songs = buildSongList(rasdCorpus)
+
+
 
 # collect each set of X notes
 def findStartingPoints( song, number ):

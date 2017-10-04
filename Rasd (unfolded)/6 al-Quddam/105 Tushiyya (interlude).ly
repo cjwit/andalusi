@@ -36,16 +36,15 @@ accidentalerror = \markup { { "Unclear accidentals" } }
 		\tempo "Moderato" 8. = 92
 
 		\repeat unfold 2 {
-			\repeat percent 4 {
-				a'16. a32 g16 fis16 g8 |
-			}
-
+			a'16. a32 g16 fis16 g8 |
+			a16. a32 g16 fis16 g8 |
+			a16. a32 g16 fis16 g8 |
+			a16. a32 g16 fis16 g8 |
 			g8. r8. |
 
-			\repeat percent 3 {
-				a16. a32 g16 fis16 g8 |
-			}
-
+			a16. a32 g16 fis16 g8 |
+			a16. a32 g16 fis16 g8 |
+			a16. a32 g16 fis16 g8 |
 			a16. a32 g16 fis16. e32 d16 |
 			c8. r8.
 		}
@@ -67,15 +66,12 @@ accidentalerror = \markup { { "Unclear accidentals" } }
 
 		\repeat unfold 2 {
 			d16. d32 d16 e fis 8 |
-
-			\repeat percent 2 {
-				g16. a32 a16 a g8 |
-			}
-
-			\repeat percent 4 {
-				a16. a32 g16 fis g8 |
-			}
-
+			g16. a32 a16 a g8 |
+			g16. a32 a16 a g8 |
+			a16. a32 g16 fis g8 |
+			a16. a32 g16 fis g8 |
+			a16. a32 g16 fis g8 |
+			a16. a32 g16 fis g8 |
 			g8. r8.
 		}
 
