@@ -72,20 +72,31 @@ def fixErrors( songs, errors ):
 		note = song.notes[noteIndex]
 		nextNote = note.next()
 		previousNote = song.notes[noteIndex-1]
-		print(song.movement)
 		if song.movement == "Basit":
 			note.duration.quarterLength = 0.125
 			print(" - fixed error in song", song.number)
 			if "Rest" in nextNote.classes:
 				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1 })
 		elif song.movement == "al-Quddam":
-			print(str(previousNote.duration.quarterLength), note.duration.quarterLength, nextNote.classes[0])
 			if (str(previousNote.duration.quarterLength) == "1/3" and note.duration.quarterLength == 0 and "Rest" in nextNote.classes):
 				previousNote.duration.quarterLength = 0.375
 				note.duration.quarterLength = 0.125
 				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1})
-				print("NEW DURATIONS:", song.notes[noteIndex - 1].duration.quarterLength, song.notes[noteIndex].duration.quarterLength, song.notes[noteIndex + 2].duration.quarterLength)
 				print(" - fixed error in song", song.number)
+			elif song.number == 110:
+				# fix notes of duration 0
+				note.duration.quarterLength = 0.125
+				restsToDelete.append({ 'song': songIndex, 'note': noteIndex - 1})
+				restsToDelete.append({ 'song': songIndex, 'note': noteIndex + 1})
+				# fix other issues with 110
+				for i, n in enumerate(song.notes):
+					if str(n.duration.quarterLength) == "1/3":
+						n.duration.quarterLength = 0.375
+					if ("Rest" in n.classes and str(n.duration.quarterLength) == "1/6"):
+						restsToDelete.append({ 'song': songIndex, 'note': i })
+				print(" - fixed error in song", song.number)
+			else:
+				print(" - unfixed error in song", song.number)
 		else:
 			print(" - unfixed error in song", song.number)
 	restsToDelete.sort(key=lambda rest: rest['note'], reverse=True)
@@ -93,10 +104,6 @@ def fixErrors( songs, errors ):
 		songs[rest['song']].notes.pop(rest['note'])
 		print(' - removed rest in song', rest['song'])
 	return(songs)
-
-songs = buildSongList(rasdCorpus)
-
-
 
 # collect each set of X notes
 def findStartingPoints( song, number ):
@@ -180,4 +187,4 @@ def globalCommonMotives( motiveObject ):
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
-globalCommonMotives(buildSets(songs, 10))
+commonMotives = globalCommonMotives(buildSets(songs, 10))
