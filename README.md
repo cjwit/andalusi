@@ -4,8 +4,10 @@
 
 Where to start
 
-* Notes with 0.0 durations should have proper durations in Quddam
-	* Remove unnecessary rests
+* Sort globalCommonMotives by avoiding duplicates that occur within those that are already selected (adjust starting indices for scans)
+	* Malhun work may have done this
+	* Or limit it to only appearing once within a song (would speed the process up, too, and allow to scan all lengths starting within a reasonable number)
+	* Not only how often does it appear, but how many different songs does it appear in?
 
 * Using globalCommonMotives, incorporate "show" function by creating a useful depiction of what is going on
 	* Collect handful of most common (beginning of the list)
