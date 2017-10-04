@@ -160,9 +160,10 @@ def globalCommonMotives( motiveObject ):
 	commonMotives = []
 	for song in motiveObject:
 		motives = song['motives']
-		print(song['songNumber'], song['songTitle'], " - ", len(motives), "to test")
+#		print(song['songNumber'], song['songTitle'], " - ", len(motives), "to test")
 		if len(motives) != 0:
 			for m in motives:
+				# if this one has not appeared before, add it
 				string = m['string']
 				filtered = list(filter(lambda motive: motive['string'] == string, commonMotives))
 				if len(filtered) == 0:
@@ -171,18 +172,44 @@ def globalCommonMotives( motiveObject ):
 						'count': 1,
 						'instances': [m]
 					})
+				# if it has appeared, add the count and instance to the new object
 				else:
 					for i in commonMotives:
 						if i['string'] == string:
 							i['count'] += 1
 							i['instances'].append(m)
-		else:
-			print(song['songNumber'], song['songTitle'], "has an unknown error, there are no motives to test")
+#		else:
+#			print(song['songNumber'], song['songTitle'], "has an unknown error, there are no motives to test")
 	commonMotives.sort(key=lambda motive: motive['count'], reverse=True)
-	print(len(commonMotives), 'were unique')
-	print('highest count:', commonMotives[0]['count'], commonMotives[0]['string'])
+#	print(len(commonMotives), 'were unique')
+#	print('highest count:', commonMotives[0]['count'], commonMotives[0]['string'])
 	return(commonMotives)
 
+def weedOutSingles(commonMotives):
+	weeded = []
+	for m in commonMotives:
+		if len(findSongsWithMotive(m)) > 1:
+			weeded.append(m)
+	return(weeded)
+
+def findSongsWithMotive(motiveObject):
+	songs = []
+#	print("\n", motiveObject['string'])
+	for i in motiveObject['instances']:
+		if i['songNumber'] not in songs:
+			songs.append(i['songNumber'])
+	return(songs)
+
+def tester(num):
+	sets = buildSets(songs, num)
+	common = globalCommonMotives(sets)
+	weeded = weedOutSingles(common)
+	print(num, len(weeded), "motives appear in more than one song")
+
+for i in range(11, 25):
+	tester(i)
+
+# find a way to reduce out the duplicates
 
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')

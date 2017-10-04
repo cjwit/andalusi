@@ -20,6 +20,10 @@ Clarke 2017: http://mtosmt.org/issues/mto.17.23.3/mto.17.23.3.clarke.html
 
 Clarke 2017
 
+# General computational stuff
+
+* Global age of hip hop sound: http://emusicology.org/article/view/5410/4799
+
 # On analysis
 
 Tenzer 2006, p 17:
