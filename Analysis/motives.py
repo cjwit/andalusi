@@ -210,6 +210,17 @@ for i in range(11, 25):
 	tester(i)
 
 # find a way to reduce out the duplicates
+# list of finalKeepers, list of startingPointData
+# set up a reverse-order search starting with longest motives
+	# weed out lousy examples (maybe, has to appear more than twice?)
+	# maintain a list of [songNumber, startingPoint, motiveLength]
+# check next level of shorter weeded out examples against startingPoint, motiveLength list
+	# if the new motive's startingPoint begins between a given SP and SP + motiveLength - shorterMotiveLength (?), toss it
+	# else, add to finalKeepers and startingPointData
+# check with a for loop on sorted(finalKeepers) (by length):
+	# print length, number of motives of each length
+	# print frequency of appearances (count? len(findSongsWithMotive)?) of the top three motives
+		# check number of motives, if less than 3, print two or one
 
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
