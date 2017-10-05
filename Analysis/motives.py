@@ -207,70 +207,107 @@ def tester(num):
 	print(num, len(weeded), "motives appear in more than two songs")
 	return(weeded)
 
-for i in range(20, 26):
-	tester(i)
-
-# when weeding for at least 3 songs, maxLength is 20
-
-def removeDuplicates( minLength, maxLength ):
+def filterShort( weededList ):
 	finalKeepers = []
 	startingPointData = []
-	for i in reversed(range(minLength, maxLength + 1)):
-		weeded = tester(i)
+	i = 0
+	unfilteredCount = 0
+	for weeded in reversed(weededList): # change to weededList
+		# Get a starting point
+		print("moving to motives of a new length:", i+1, "of", len(testList))
+		count = 0
 		for m in weeded:
-			print("\nNEXT")
-			for i in m['instances']:
-				print(i['songNumber'], i['startingPoint'])
-
-weeded4 = tester(4)
-weeded5 = tester(5)
-
-finalKeepers = []
-startingPointData = []
-testList = [weeded5, weeded4]
-for i, v in enumerate(testList): # change to reversed(range(minLength, maxLength)
-	weeded = testList # change to tester(i)
-	print("moving to motives of a new length:", i, "of", len(weeded))
-	for motives in weeded: # change to weeded
+			count += len(m['instances'])
+			unfilteredCount += len(m['instances'])
+		print("filtering", count,"motives")
+		i += 1
 		mCount = 0
-		mNum = len(motives)
-		for motive in motives:
-			print(" -  moving to motive", mCount, "of", mNum)
+		mNum = len(weeded)
+		for motive in weeded:
+			print("\r  --  moving to motive", mCount + 1, "of", mNum)
 			mCount += 1
 			iCount = 0
 			iNum = len(motive['instances'])
 			for instance in motive['instances']:
-				print("  -- instance", iCount, "of", iNum)
+	#			print("  -- instance", iCount, "of", iNum)
 				iCount += 1
+				# process each one
 				songNumber = instance['songNumber']
+					# THIS MAY DO THE TRICK,
+				motive['song'] = 0
+					# OUTPUT MOTIVES AS INDIVIDUAL MOTIVES WITH A LIST OF OTHER APPEARANCES,
+					# NOT INSTANCES
 				startingPoint = instance['startingPoint']
 				motiveLength = len(instance['notes'])
 				infoObject = { 'songNumber': songNumber, 'startingPoint': startingPoint, 'length': motiveLength }
-				if len(startingPointData) == 0: startingPointData.append(infoObject)
-				for spd in startingPointData: #adding duplicates because its using this list, use true false trigger
-					sameSong = spd['songNumber'] == infoObject['songNumber']
-					startsBefore = infoObject['startingPoint'] < spd['startingPoint']
-					endsAfter = infoObject['startingPoint'] > spd['startingPoint'] + spd['length'] - infoObject['length']
-					if (sameSong and (startsBefore or endsAfter)):
+				# check against existing motives
+				thisSongsStartingPointData = list(filter(lambda spd: spd['songNumber'] == songNumber, startingPointData))
+				if len(thisSongsStartingPointData) == 0:
+					startingPointData.append(infoObject)
+					finalKeepers.append(motive)
+				else:
+					thisIsANewInstance = True
+					for d in thisSongsStartingPointData:
+						startsAfter = infoObject['startingPoint'] >= d['startingPoint']
+						endsBefore = infoObject['startingPoint'] <= d['startingPoint'] + d['length'] - infoObject['length']
+						if (startsAfter and endsBefore):
+							thisIsANewInstance = False
+					if thisIsANewInstance:
 						startingPointData.append(infoObject)
 						finalKeepers.append(motive)
-						print("   here's a new one", infoObject)
+						print("\r       new:", infoObject['songNumber'], infoObject['startingPoint'])
+	print("FINISHED: final keepers", len(finalKeepers), "starting points", len(startingPointData),)
+	print("    started with", unfilteredCount, "unfiltered motives")
+	return(finalKeepers)
 
+# def sortAndReduce( reducedMotives, num):
+#	sort the final list and pop out the most common X motives only (instead of thousands) for charts
 
-# find a way to reduce out the duplicates
-# list of finalKeepers, list of startingPointData
-# set up a reverse-order search starting with longest motives
-	# weed out lousy examples (maybe, has to appear more than twice?)
-	# maintain a list of [songNumber, startingPoint, motiveLength]
-# check next level of shorter weeded out examples against startingPoint, motiveLength list
-	# if the new motive's startingPoint begins between a given SP and SP + motiveLength - shorterMotiveLength (?), toss it
-	# else, add to finalKeepers and startingPointData
-# check with a for loop on sorted(finalKeepers) (by length):
-	# print length, number of motives of each length
-	# print frequency of appearances (count? len(findSongsWithMotive)?) of the top three motives
-		# check number of motives, if less than 3, print two or one
+def getSongCounts( reducedInstances ):
+	# build top line "",song numbers...
+	songNumbers = []
+	csv = {}
+	outputText = ""
+	for instance in reducedInstances:
+		# create an object of ['string'] and [songCount]
+		string = instance['string']
+		songCounts = {}
+		if string not in list(csv.keys()):
+			csv[string] = {}
+		else:
+			songCounts = csv[string]
+		print(instance['songs'])
+		# build songCount list USE SONGS KEY ON EACH INSTANCE
+		appearances = instance['instances']
+		# add song numbers where this motive appears
+		for a in appearances:
+			if a['songNumber'] not in songNumbers:
+				songNumbers.append(a['songNumber'])
+			if a['songNumber'] not in list(songCounts.keys()):
+				songCounts[a['songNumber']] = 0
+			# scan this instance for new appearances
+			for n in songNumbers:
+				filteredInstances = list(filter(lambda appearances: appearances['songNumber'] == n, appearances))
+				for f in filteredInstances:
+					print('n is', n, 'filtered songNumber is', f['songNumber'])
+				songCounts[n] += len(filteredInstances)
+				print('added', len(filteredInstances), 'to song', n)
+		csv[string] = songCounts
+	for i in csv.items():
+		print(i)
+	outputText += "," + str(songNumbers)
+
+getSongCounts(finalList)
 
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
 commonMotives = globalCommonMotives(buildSets(songs, 10))
+
+# when weeding for at least 3 songs, maxLength is 20 (0 of length 21)
+weeded4 = tester(4)
+weeded5 = tester(5)
+weeded20 = tester(20)
+weeded19 = tester(19)
+testList = [weeded19, weeded20]
+finalList = filterShort(testList)
