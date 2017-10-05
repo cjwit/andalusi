@@ -4,13 +4,8 @@
 
 Where to start
 
-* finalList is coming out as a list of motives, but those are really individual istnaces with references (in ['instances'] of other appearances). Instance data could be at the top level, making analysis easier
-		See line 236
-		
-* Sort globalCommonMotives by avoiding duplicates that occur within those that are already selected (adjust starting indices for scans)
-	* Malhun work may have done this
-	* Or limit it to only appearing once within a song (would speed the process up, too, and allow to scan all lengths starting within a reasonable number)
-	* Not only how often does it appear, but how many different songs does it appear in?
+* Run getSongCounts with the entire dataset to get a complete CSV
+	* use that within excel to generate specific graphs
 
 * Using globalCommonMotives, incorporate "show" function by creating a useful depiction of what is going on
 	* Collect handful of most common (beginning of the list)

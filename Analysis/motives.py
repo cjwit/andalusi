@@ -120,6 +120,7 @@ def findStartingPoints( song, number ):
 	return(startingPoints)
 
 def buildSets( songs, number ):
+	"""Find all possible motives of a specified length in all songs"""
 	allMotives = []
 	for song in songs:
 		songTitle = song.title
@@ -157,6 +158,7 @@ def buildSets( songs, number ):
 
 
 def globalCommonMotives( motiveObject ):
+	""""Reorganize a list of motives (by song) into a list of motives by count (with all instances of that motive as a property)"""
 	commonMotives = []
 	for song in motiveObject:
 		motives = song['motives']
@@ -170,7 +172,8 @@ def globalCommonMotives( motiveObject ):
 					commonMotives.append({
 						'string': string,
 						'count': 1,
-						'instances': [m]
+						'instances': [m],
+						'songCounts': {m['songNumber']: 1}
 					})
 				# if it has appeared, add the count and instance to the new object
 				else:
@@ -178,6 +181,10 @@ def globalCommonMotives( motiveObject ):
 						if i['string'] == string:
 							i['count'] += 1
 							i['instances'].append(m)
+							if m['songNumber'] in list(i['songCounts'].keys()):
+								i['songCounts'][m['songNumber']] += 1
+							else:
+								i['songCounts'][m['songNumber']] = 1
 #		else:
 #			print(song['songNumber'], song['songTitle'], "has an unknown error, there are no motives to test")
 	commonMotives.sort(key=lambda motive: motive['count'], reverse=True)
@@ -271,33 +278,30 @@ def getSongCounts( reducedInstances ):
 	for instance in reducedInstances:
 		# create an object of ['string'] and [songCount]
 		string = instance['string']
-		songCounts = {}
-		if string not in list(csv.keys()):
-			csv[string] = {}
-		else:
-			songCounts = csv[string]
-		print(instance['songs'])
-		# build songCount list USE SONGS KEY ON EACH INSTANCE
-		appearances = instance['instances']
-		# add song numbers where this motive appears
-		for a in appearances:
-			if a['songNumber'] not in songNumbers:
-				songNumbers.append(a['songNumber'])
-			if a['songNumber'] not in list(songCounts.keys()):
-				songCounts[a['songNumber']] = 0
-			# scan this instance for new appearances
-			for n in songNumbers:
-				filteredInstances = list(filter(lambda appearances: appearances['songNumber'] == n, appearances))
-				for f in filteredInstances:
-					print('n is', n, 'filtered songNumber is', f['songNumber'])
-				songCounts[n] += len(filteredInstances)
-				print('added', len(filteredInstances), 'to song', n)
-		csv[string] = songCounts
-	for i in csv.items():
-		print(i)
-	outputText += "," + str(songNumbers)
-
-getSongCounts(finalList)
+		songCounts = instance['songCounts']
+		total = 0
+		for s in list(songCounts.keys()):
+			total += songCounts[s]
+		print(string, total)
+		if total > 200: # change the number of instances required to make it onto the chart
+			if string not in list(csv.keys()):
+				csv[string] = songCounts
+				for n in list(songCounts.keys()):
+					if n not in songNumbers:
+						songNumbers.append(n)
+	songNumbers.sort()
+	for n in songNumbers:
+		outputText += "," + str(n)
+	for string in list(csv.keys()):
+		songs = list(csv[string].keys())
+		outputText += "\n" + string
+		for n in songNumbers:
+			if n in songs:
+				outputText += "," + str(csv[string][n])
+			else:
+				outputText += ",0"
+	print(songNumbers)
+	print(outputText)
 
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
@@ -309,5 +313,6 @@ weeded4 = tester(4)
 weeded5 = tester(5)
 weeded20 = tester(20)
 weeded19 = tester(19)
-testList = [weeded19, weeded20]
+testList = [weeded4, weeded19, weeded20]
 finalList = filterShort(testList)
+getSongCounts(finalList)
