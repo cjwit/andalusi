@@ -188,7 +188,7 @@ def globalCommonMotives( motiveObject ):
 def weedOutSingles(commonMotives):
 	weeded = []
 	for m in commonMotives:
-		if len(findSongsWithMotive(m)) > 1:
+		if len(findSongsWithMotive(m)) > 2:
 			weeded.append(m)
 	return(weeded)
 
@@ -204,10 +204,58 @@ def tester(num):
 	sets = buildSets(songs, num)
 	common = globalCommonMotives(sets)
 	weeded = weedOutSingles(common)
-	print(num, len(weeded), "motives appear in more than one song")
+	print(num, len(weeded), "motives appear in more than two songs")
+	return(weeded)
 
-for i in range(11, 25):
+for i in range(20, 26):
 	tester(i)
+
+# when weeding for at least 3 songs, maxLength is 20
+
+def removeDuplicates( minLength, maxLength ):
+	finalKeepers = []
+	startingPointData = []
+	for i in reversed(range(minLength, maxLength + 1)):
+		weeded = tester(i)
+		for m in weeded:
+			print("\nNEXT")
+			for i in m['instances']:
+				print(i['songNumber'], i['startingPoint'])
+
+weeded4 = tester(4)
+weeded5 = tester(5)
+
+finalKeepers = []
+startingPointData = []
+testList = [weeded5, weeded4]
+for i, v in enumerate(testList): # change to reversed(range(minLength, maxLength)
+	weeded = testList # change to tester(i)
+	print("moving to motives of a new length:", i, "of", len(weeded))
+	for motives in weeded: # change to weeded
+		mCount = 0
+		mNum = len(motives)
+		for motive in motives:
+			print(" -  moving to motive", mCount, "of", mNum)
+			mCount += 1
+			iCount = 0
+			iNum = len(motive['instances'])
+			for instance in motive['instances']:
+				print("  -- instance", iCount, "of", iNum)
+				iCount += 1
+				songNumber = instance['songNumber']
+				startingPoint = instance['startingPoint']
+				motiveLength = len(instance['notes'])
+				infoObject = { 'songNumber': songNumber, 'startingPoint': startingPoint, 'length': motiveLength }
+				if len(startingPointData) == 0: startingPointData.append(infoObject)
+				for spd in startingPointData: #adding duplicates because its using this list, use true false trigger
+					sameSong = spd['songNumber'] == infoObject['songNumber']
+					startsBefore = infoObject['startingPoint'] < spd['startingPoint']
+					endsAfter = infoObject['startingPoint'] > spd['startingPoint'] + spd['length'] - infoObject['length']
+					if (sameSong and (startsBefore or endsAfter)):
+						startingPointData.append(infoObject)
+						finalKeepers.append(motive)
+						print("   here's a new one", infoObject)
+
 
 # find a way to reduce out the duplicates
 # list of finalKeepers, list of startingPointData
