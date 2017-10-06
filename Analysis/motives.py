@@ -195,7 +195,7 @@ def globalCommonMotives( motiveObject ):
 def weedOutSingles(commonMotives):
 	weeded = []
 	for m in commonMotives:
-		if len(findSongsWithMotive(m)) > 2:
+		if len(findSongsWithMotive(m)) > 5:
 			weeded.append(m)
 	return(weeded)
 
@@ -207,11 +207,11 @@ def findSongsWithMotive(motiveObject):
 			songs.append(i['songNumber'])
 	return(songs)
 
-def tester(num):
+def tester(songs, num):
 	sets = buildSets(songs, num)
 	common = globalCommonMotives(sets)
 	weeded = weedOutSingles(common)
-	print(num, len(weeded), "motives appear in more than two songs")
+	print(num, len(weeded), "motives appear in more than five songs")
 	return(weeded)
 
 def filterShort( weededList ):
@@ -283,18 +283,18 @@ def getSongCounts( reducedInstances ):
 		for s in list(songCounts.keys()):
 			total += songCounts[s]
 		print(string, total)
-		if total > 200: # change the number of instances required to make it onto the chart
+		if total > 50: # change the number of instances required to make it onto the chart
 			if string not in list(csv.keys()):
 				csv[string] = songCounts
 				for n in list(songCounts.keys()):
 					if n not in songNumbers:
 						songNumbers.append(n)
-	songNumbers.sort()
+	songNumbers = list(range(min(songNumbers), max(songNumbers) + 1))
 	for n in songNumbers:
 		outputText += "," + str(n)
 	for string in list(csv.keys()):
 		songs = list(csv[string].keys())
-		outputText += "\n" + string
+		outputText += "\n" + string.replace("_", " ")
 		for n in songNumbers:
 			if n in songs:
 				outputText += "," + str(csv[string][n])
@@ -303,16 +303,19 @@ def getSongCounts( reducedInstances ):
 	print(songNumbers)
 	print(outputText)
 
+getSongCounts(finalList)
+
+def createTestList(songs, maxLength, minLength):
+	testList = []
+	for i in range(maxLength, minLength):
+		testList.append(tester(songs, i))
+	print('FINISHED:\n', len(testList), "different lengths of motives")
+	return(testList())
+
 # commands
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
-commonMotives = globalCommonMotives(buildSets(songs, 10))
-
 # when weeding for at least 3 songs, maxLength is 20 (0 of length 21)
-weeded4 = tester(4)
-weeded5 = tester(5)
-weeded20 = tester(20)
-weeded19 = tester(19)
-testList = [weeded4, weeded19, weeded20]
+# when weeding for at least 5 songs, maxLength is 12 (0 of length 13)
+testList = createTestList(songs, 4, 13)
 finalList = filterShort(testList)
-getSongCounts(finalList)
