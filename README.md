@@ -4,8 +4,8 @@
 
 Where to start
 
-* Run getSongCounts with the entire dataset to get a complete CSV
-	* use that within excel to generate specific graphs
+* find a way to graph (or otherwise notate in excel) the songs that don't have common F or F# motives (or don't have fs or f#s at all)
+	* Could use the heat map?
 
 * Using globalCommonMotives, incorporate "show" function by creating a useful depiction of what is going on
 	* Collect handful of most common (beginning of the list)
