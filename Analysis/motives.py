@@ -303,19 +303,74 @@ def getSongCounts( reducedInstances ):
 	print(songNumbers)
 	print(outputText)
 
-getSongCounts(finalList)
+def showCommonMotives( reducedInstances ):
+	printed = []
+	for instance in reducedInstances:
+		string = instance['string']
+		songCounts = instance['songCounts']
+		totalOccurances = 0
+		for s in list(songCounts.keys()):
+			totalOccurances += songCounts[s]
+		print(string, totalOccurances)
+		if totalOccurances > 50: # change the number of instances required to make it onto the chart
+			if string not in printed:
+				# create stream
+				# add string
+				# add totalOccurances
+				# add list(songCounts.keys())
+				printed.append(string)
+				print("Created", string)
 
 def createTestList(songs, maxLength, minLength):
 	testList = []
 	for i in range(maxLength, minLength):
 		testList.append(tester(songs, i))
 	print('FINISHED:\n', len(testList), "different lengths of motives")
-	return(testList())
+	return(testList)
+
+def removeDuplicatesFromFinalList( reducedInstances ):
+	strings = []
+	noDupes = []
+	for m in reducedInstances:
+		if m['string'] not in strings:
+			noDupes.append(m)
+			strings.append(m['string'])
+	return(noDupes)
+
+def sortByCount( noDupes ):
+	return(list(reversed(sorted(noDupes, key=lambda motive: motive['count']))))
+
+def showMotive( motive ):
+	noteStream = stream.Measure()
+	songCount = len(list(motive['songCounts'].keys()))
+	fp = "/Users/witulski/Desktop/out/"
+	fp += str(motive['count']) + "-" + str(songCount) + ".ly"
+	noteList = motive['instances'][0]['notes']
+	for n in noteList:
+		noteStream.append(n)
+	print(fp)
+	noteStream.write(fmt='lily', fp=fp)
+
+def showMotives( motiveList ):
+	for motive in motiveList:
+		if motive['count'] > 100:
+			showMotive(motive)
 
 # commands
+
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
 songs = buildSongList(rasdCorpus)
+
 # when weeding for at least 3 songs, maxLength is 20 (0 of length 21)
 # when weeding for at least 5 songs, maxLength is 12 (0 of length 13)
+
 testList = createTestList(songs, 4, 13)
 finalList = filterShort(testList)
+noDupes = removeDuplicatesFromFinalList(finalList)
+sortedNoDupes = sortByCount(noDupes)
+
+for m in sortedNoDupes:
+	print(m['count'], m['string'])
+
+# getSongCounts(finalList)
+# showMotives(sortedNoDupes)
