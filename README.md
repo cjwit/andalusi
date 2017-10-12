@@ -54,7 +54,62 @@ Introductions
 * Are there four distinct modal segments (Rasd, Hasar, Zidan, Mazmum)?
 	* What is the best way to measure shifts in tonality? What is the structural or modal context for a given shift?
 
-## Analysis
+## Graphs
+
+Necessary intro
+
+* Oral tradition, varied organization in written collections
+* How this
+
+Tempo
+
+* Changes in tempo (increasing), lines between time signatures
+* Discussion of mizan, structures
+	* Potential for mizan to organize modes?
+
+Pitch graph
+
+* Where do new pitches appear? Do they signal anything structural?
+	* Upward movement at the end
+
+Pitch class graph
+
+* Relationship to pentatonic...
+
+* Song with no F or F#
+	* Look at the songs, do they move between pentatonic regions?
+	* 47, 56, 66, 72, 73, 76, 99 (tushiyya): 6 pitches, not pentatonic
+
+* CDGA heat graph
+	* Change over time, look at outliers
+	* Even distribution until movement in second half of qa'im and batayhi, D heavy darj, G heavy end of quddam
+
+* F and F# heat graph
+	* Beginning to think about motives
+	* Most common motive: EFED
+
+Motives
+
+* Describe process
+	* Sorting and filtering
+
+* Show most common (in > 5 songs)
+
+* Show motive charts
+	* These are all instances of smaller motives
+	* Placement of
+	* Missing ends (because of rhythmic change)
+
+* Check 44-47... none of the most common patterns appear there
+
+* Chromatic instances
+	* E flat to F sharp and G A B flat chart
+	* Look at specific pieces, note placements
+	* Far more descending than ascending instances
+	* Many are individual moments, no real overlap
+	* Pairs of songs may be "milestones" in the progression of the nuba
+
+## Further questions
 
 * Are there motivic consistencies?
 * Is there a range- or contour- based development through each movement?
@@ -66,16 +121,3 @@ Introductions
 		* Cutting across movements, time signatures, rhythmic feels
 * Associate rhythmic accents to musical motion
 	* Change from beginning to end of movements? (Relationship to tempo?)
-
-## Graphs
-
-Tempo
-
-* Changes in tempo (increasing), lines between time signatures
-
-Pitch Class and Range
-
-* Where do new pitches appear? Do they signal anything structural?
-* Most common pitches across the repertoire (absolute)
-	* Using same x-axis pair, a scatter plot of absolute pitch could show mode and range (with contour)
-	* Using same x-axis pair, a scatter plot of pitch classes in each song could show mode

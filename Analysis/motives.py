@@ -356,6 +356,17 @@ def showMotives( motiveList ):
 		if motive['count'] > 100:
 			showMotive(motive)
 
+def findMotive( songs, pitches ):
+	for s in songs:
+		notes = s['notes'].notesAndRests
+		matches = []
+		for i, n in enumerate(notes):
+			match = False
+			if n.pitch.name == pitches[0]
+	print(pitches)
+
+findMotive(songs, ["D", "Eb", "F#", "G"])
+
 # commands
 
 rasdCorpus = corpus.corpora.LocalCorpus('rasdUnfolded')
