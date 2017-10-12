@@ -357,15 +357,27 @@ def showMotives( motiveList ):
 			showMotive(motive)
 
 def findMotive( songs, pitches ):
+	motiveLength = len(pitches)
+	allMatches = []
 	for s in songs:
-		notes = s['notes'].notesAndRests
-		matches = []
+		notes = s.notes.notes
+		songMatches = []
 		for i, n in enumerate(notes):
-			match = False
-			if n.pitch.name == pitches[0]
-	print(pitches)
-
-findMotive(songs, ["D", "Eb", "F#", "G"])
+			match = True
+			if i < (len(notes) - motiveLength):
+				for add in range(0, motiveLength):
+					if "Rest" in notes[i + add].classes:
+						match = False
+					elif notes[i + add].pitch.name != pitches[add]:
+						match = False
+				if match == True:
+					songMatches.append({'startingPoint': i, 'offset': n.offset})
+		if len(songMatches) > 0:
+			allMatches.append({'song': s.number, 'matches': songMatches, 'count': len(songMatches)})
+	for match in allMatches:
+		print('song number:', match['song'], 'count:', len(match['matches']))
+#		for m in match['matches']:
+#			print("            --  starting Point", m['startingPoint'], 'offset', m['offset'])
 
 # commands
 
@@ -380,8 +392,6 @@ finalList = filterShort(testList)
 noDupes = removeDuplicatesFromFinalList(finalList)
 sortedNoDupes = sortByCount(noDupes)
 
-for m in sortedNoDupes:
-	print(m['count'], m['string'])
-
+# findMotive(songs, ["F#", "E-"])
 # getSongCounts(finalList)
 # showMotives(sortedNoDupes)
