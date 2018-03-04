@@ -43,7 +43,7 @@ accidentalerror = \markup { { "Unclear accidentals" } }
 			g2  f4 e d \bar ""
 			\tuplet 7/4 { f16[( e f e f e f)] } g2. \bar ""
 			f32[ g a bes a g f e] \bar ""
-			d2 \tuplet 5/4 { c16[( b c d c)] } d2
+			d2 \tuplet 5/4 { c16[( b c d c)] } d2 \bar "|."
 		}
 
 	}

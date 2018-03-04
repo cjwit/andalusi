@@ -3,7 +3,7 @@
 \header {
 	title = "Khātimu al-Russil"
 	subtitle = "Ramal al-Maya #2"
-	composer = "Page 222"
+	composer = "Page 83"
 	meter = "Mizan Basit"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"
 	tagline = ""
