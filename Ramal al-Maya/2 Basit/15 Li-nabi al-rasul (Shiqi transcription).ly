@@ -48,7 +48,7 @@ published = {
 	}
 	\relative d' {
 		\clef "treble"
-		\key c \major
+		\key d \minor
 		\time 6/4
 			\set Timing.beamExceptions = #'()
 			\set Timing.baseMoment = #(ly:make-moment 1/4)
@@ -63,7 +63,7 @@ published = {
 		f4( e8 f g4) f \db e( d |
 		c) c d( e \db f) e |
 		f( e f) g \db d4. c8 |
-		b?4 c d8( e f e \db d4) r4 |
+		b4 c d8( e f e \db d4) r4 |
 
 		% repeated over solo
 
@@ -74,7 +74,7 @@ published = {
 		f4( e8 f g4) f \db e( d |
 		c) c d( e \db f) e |
 		f( e f) g \db d4. c8 |
-		b?4 c d8( e f e \db d4) r4 |
+		b4 c d8( e f e \db d4) r4 |
 
 
 		% bridge
