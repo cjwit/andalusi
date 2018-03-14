@@ -2,7 +2,7 @@
 
 \header {
 	title = "Khayru al-Bashar"
-	subtitle = "Rubba Layl #6"
+	subtitle = "Ramal al-Maya #6"
 	composer = "Page 92"
 	meter = "Mizan Basit"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"

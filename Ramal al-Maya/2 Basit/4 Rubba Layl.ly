@@ -1,8 +1,8 @@
 \version "2.18.2"
 
 \header {
-	title = "Sallū Yā ʿIbād"
-	subtitle = "Rubba Layl #4"
+	title = "Rubba Layl"
+	subtitle = "Ramal al-Maya #4"
 	composer = "Page 88"
 	meter = "Mizan Basit"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"
