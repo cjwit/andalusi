@@ -1,9 +1,9 @@
 \version "2.18.2"
 
 \header {
-	title = "Li-Nabī al-Rasūl"
-	subtitle = "Ramal al-Maya #15"
-	composer = "Page 103"
+	title = "Huwwa al-Nabī al-Muʿadhdhamu"
+	subtitle = "Ramal al-Maya #14"
+	composer = "Page 102"
 	meter = "Mizan Basit"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"
 	tagline = ""
@@ -25,37 +25,49 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
-
-% TRANSCRIPTION
-
 \score {
 	\relative d' {
 		\clef "treble"
 		\key c \major
-		\time 6/4
-			\set Timing.beamExceptions = #'()
-			\set Timing.baseMoment = #(ly:make-moment 1/4)
-			\set Timing.beatStructure = #'(1 1 1 1 1 1)
-		\tempo "Moderato" 4 = 88
+		\time #'(2 2 2) 6/4
+		\tempo "Moderato" 4 = 80
 
-		\repeat volta 2 {
-			a'2. a4 \db a4.( g8) |
-			f4 a g2~ \db g4 r |
-			g2. g4 \db g2 |
-			f4 g a8( bes a g \db f e d4) |
-			f4( e8 f g4) f \db e( d) |
-			c c d( e \db f e) |
-			f( e f) g \db d4. c8 |
-			b4 c d8( e f e \db d4)-\fine r4 |
+		\partial 4
+
+		a'4 |
+
+		\repeat volta 5 {
+			a8^\segno( b g4 c) b8( a) \db g4( f8 e |
+			d4 c d8 e f e \db d4) a'8 a |
+			a2. a4 \db a4.( g8 |
+			f4 g a8 bes a g \db f4) f |
+			f8( g f2) g4 \db a2 |
+			g4 f e8( g) f( e) \db d4( c) |
+			d e f f~ \db f g( |
+			f) a g8( f16 e d4) \db f8( e f) g |
+			f d e c d4 b \db c16( b c8) d4 |
+			b c16( b c8) d4 g8 f16( g) \db e( f) d( e) c4 |
+			f e f a8 a \db g4. e16 e |
 		}
 
-		\repeat volta 2 {
-			f4( e8 f g4) f \db e( d) |
-			c c d8( e f e \db d4) r |
+		\alternative {
+			{
+				f8 d e c d4( g \db d-\fine) \bar "||" a' |
+			}
+			{
+				f8 d e c d4 g \db d b( |
+				c16 b c8) d2 c4 \db d( e) |
+			}
 		}
 
-		f4( e8 f g4) f \db e4( d) |
-		c c d8( e f e \db d4)-\dc r \bar "||"
+		f4 a a g( \db f) g |
+		a16( g f e d4) f8( e f) g \db f16( e) d8 e16( d) c8 |
+		d4 b c16 b c8 d4~ \db d c |
+		d e f a \db a g |
+		f g a16 g f e d4 \db f8 e f g |
+		f16 e d8 e16 d c8 d4 b( \db c16 b c8) d4~ |
+		d c d( e \db f a) |
+		a g( f8 g) f( e) \db d4 a'^\ds \bar "||"
 
 	}
 
