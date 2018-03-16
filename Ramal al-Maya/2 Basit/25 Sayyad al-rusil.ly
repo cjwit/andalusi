@@ -1,9 +1,9 @@
 \version "2.18.2"
 
 \header {
-	title = "Yā ʿĀshiqīn"
-	subtitle = "Ramal al-Maya #22"
-	composer = "Page 110"
+	title = "Sayyad al-Rusil"
+	subtitle = "Ramal al-Maya #25"
+	composer = "Page 113"
 	meter = "Mizan Basit"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"
 	tagline = ""
@@ -30,49 +30,51 @@ accidentalerror = \markup { { "Unclear accidentals" } }
 		\clef "treble"
 		\key c \major
 		\time 3/4
-		\tempo "Vivace" 8 = 138
+		\tempo "Presto" 8 = 160
 
-		s8 a'8 a a a4(
+		\partial 2
+
+		d'8 d d4 |
 
 		\repeat volta 5 {
-			a4^\segno) g8 c16( d) b( c) a( b) |
-			g8( f) g8 a16( bes a8) g |
-			f e g f e d |
-			c4 a'8 a16( bes a8) a |
-			b16( c b a) g4 a8 b |
-			c b a g f e |
-			g f e d c4 |
-			c8 d16( e d8) e f( d |
-			e^\coda f) g( f) a a |
+			d4 e8 d c4 |
+			a bes8 a g4~ |
+			g f8( e f) g |
+			d4 c16( b c8) d( e |
+			f e) f( e f) g |
+			d4 c16( b c8) d4~ |
 		}
 
 		\alternative {
 			{
-				g8 a a a a4
+				d4-\fine \bar "||" d'8 d d4 |
 			}
 			{
-				g8 g g g g4(
+				d,4 e8 f g4 |
 			}
 		}
 
 		\repeat volta 2 {
-			g8) g f g a16( bes a8) |
-			g g f g a16( bes a8) |
+			g4 g8 g g4 |
+			g4 f8 a g8( f16 e |
 		}
 
 		\alternative {
 			{
-				g8 g g g g4 |
+				d4) e8 f g4 |
 			}
 			{
-				g8 g g g g4(
+				d4\repeatTie e8 f g4 |
 			}
 		}
 
-		g8) g f g a4 |
-		a8 a a a a4^\dsalcoda \bar "||"
-
-		e8^\coda f g f a a | g8-\continue
+		g4 g8 g g4 |
+		g f8 g a4~ |
+		a f8( e f) g |
+		d4 c16( b) c8 d( e |
+		f e) f( e f) g |
+		d4 c16( b) c8 d4~ |
+		d d'8 d d4^\ds \bar "|."
 
 	}
 

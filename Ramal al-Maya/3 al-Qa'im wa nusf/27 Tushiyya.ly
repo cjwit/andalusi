@@ -1,10 +1,10 @@
 \version "2.18.2"
 
 \header {
-	title = "Yā ʿĀshiqīn"
-	subtitle = "Ramal al-Maya #22"
-	composer = "Page 110"
-	meter = "Mizan Basit"
+	title = "Tushiyya"
+	subtitle = "Ramal al-Maya #27"
+	composer = "Page 115"
+	meter = "Mizan al-Qaʾim wa Nusf"
 	copyright = "Transcription adapted from Yūnis al-Shāmī, Nūbāt al-Andalusiyya al-Maghribiyya: Nūba Ramal al-Maya (1984)"
 	tagline = ""
 }
@@ -25,54 +25,63 @@ error = \markup { { "Wrong number of beats in score" } }
 repeaterror = \markup { { "Score appears to be missing repeat" } }
 accidentalerror = \markup { { "Unclear accidentals" } }
 
+% TRANSCRIPTION
+
 \score {
 	\relative d' {
 		\clef "treble"
 		\key c \major
-		\time 3/4
-		\tempo "Vivace" 8 = 138
+		\time 8/4
+			\set Timing.beamExceptions = #'()
+			\set Timing.baseMoment = #(ly:make-moment 1/4)
+			\set Timing.beatStructure = #'(1 1 1 1 1 1 1 1)
+		\tempo "Andante" 4 = 60
 
-		s8 a'8 a a a4(
-
-		\repeat volta 5 {
-			a4^\segno) g8 c16( d) b( c) a( b) |
-			g8( f) g8 a16( bes a8) g |
-			f e g f e d |
-			c4 a'8 a16( bes a8) a |
-			b16( c b a) g4 a8 b |
-			c b a g f e |
-			g f e d c4 |
-			c8 d16( e d8) e f( d |
-			e^\coda f) g( f) a a |
+		\repeat volta 2 {
+			e16 f g8 f e e c e e \db f d e f g f16 a g4 |
 		}
 
 		\alternative {
 			{
-				g8 a a a a4
+				c,8. c16 d4 b c \db d4. g8 f g d4 |
 			}
 			{
-				g8 g g g g4(
+				c8. c16 d4 b c \db d2 e8 d e f |
 			}
 		}
 
 		\repeat volta 2 {
-			g8) g f g a16( bes a8) |
-			g g f g a16( bes a8) |
+			g8 a g f e g f g \db e8. f16 e f e d c4 g'8 g |
 		}
 
 		\alternative {
 			{
-				g8 g g g g4 |
+				g4 f e8 g f a \db g f16 e d4 e8 d e f |
 			}
 			{
-				g8 g g g g4(
+				g4 f e8 g f a \db g8 f16 e d8 g f g d4 |
 			}
 		}
 
-		g8) g f g a4 |
-		a8 a a a a4^\dsalcoda \bar "||"
+		\repeat volta 2 {
+			b4 r8 b4 c8 b16 c b a \db g8 a4 b8 c b c d |
+			c4 d8 e f g f4 \db e8. d16 c4 f8 e d c |
+			b8. b16 c8 b4 c8 b16 c b a \db g8 a4 b8 c b c d |
+		}
 
-		e8^\coda f g f a a | g8-\continue
+		\alternative {
+			{
+				c4 d8 e f g f4 \db e8. d16 c4 d2 |
+			}
+			{
+				c4 d8 e f g f4 \db e8. d16 c4 d4. c16 b |
+			}
+		}
+
+		c4 e8 e e4 e \db f8 d e f g f16 a g4 |
+		c,8. c16 d4 b c \db d e16 fis g a g fis e8 e16 fis g a |
+		g16 fis e8 e16 fis g a g4 e8 e \db f8 d e f g f16 a g4 |
+		c,8. c16 d4 b c \db d2-\continue
 
 	}
 
